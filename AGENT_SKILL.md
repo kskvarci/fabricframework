@@ -42,30 +42,29 @@ The output markdown file has the following sections in order:
 1. Title & Purpose
 2. Sources (with URLs)
 3. Legend (explains † marker)
-4. Regulatory Framework Mappings table (all MCSB controls → NIST/CIS/PCI-DSS)
-5. How to Use (column definitions)
-6. Implementation Types (definitions)
-7. Where This Fits: SaaS Service Enablement for Regulated Industries
+4. How to Read This Document (column definitions + implementation type definitions)
+5. Where This Fits: SaaS Service Enablement for Regulated Industries
    - 10-step enablement lifecycle (demand → assessment → config → operate)
    - Roles table (who owns each phase)
-8. How This Relates to Compliance Frameworks, the MCSB, and Internal Policies
+6. How This Relates to Compliance Frameworks, the MCSB, and Internal Policies
    - 5-layer hierarchy diagram (Regulations → Internal Policy → MCSB → This Doc → Posture Decisions)
    - Traceability chain example (setting → control → NIST → policy → regulation)
    - "Answered by which layer" table
    - Common customer confusions and how the layering resolves them
-9. --- separator ---
-10. Section 1: Network Security (NS)
-11. Section 2: Identity Management (IM)
-12. Section 3: Privileged Access (PA)
-13. Section 4: Data Protection (DP)
-14. Section 5: Asset Management (AM)
-15. Section 6: Logging and Threat Detection (LT)
-16. Section 7: Incident Response (IR)
-17. Section 8: Posture and Vulnerability Management (PV)
-18. Section 9: Endpoint Security (ES)
-19. Section 10: Backup and Recovery (BR)
-20. Section 11: Evidence Collection
-21. Notes
+   - Regulatory Framework Mappings table (all MCSB controls → NIST/CIS/PCI-DSS)
+7. --- separator ---
+8. Section 1: Network Security (NS)
+9. Section 2: Identity Management (IM)
+10. Section 3: Privileged Access (PA)
+11. Section 4: Data Protection (DP)
+12. Section 5: Asset Management (AM)
+13. Section 6: Logging and Threat Detection (LT)
+14. Section 7: Incident Response (IR)
+15. Section 8: Posture and Vulnerability Management (PV)
+16. Section 9: Endpoint Security (ES)
+17. Section 10: Backup and Recovery (BR)
+18. Section 11: Evidence Collection
+19. Notes
 ```
 
 ## Step-by-Step Recreation Process
@@ -183,9 +182,9 @@ Include:
 ### Phase 7: Assemble the Domain Tables
 
 1. Write the header sections (Purpose, Sources, Legend)
-2. Build the Regulatory Framework Mappings table (one row per control, all 67 controls)
-3. Write How to Use and Implementation Types sections
-4. Write the context sections (6a and 6b above)
+2. Write "How to Read This Document" section (column definitions + implementation types)
+3. Write the context sections (6a and 6b above)
+4. Place the Regulatory Framework Mappings table (one row per control, all 67 controls) at the end of section 6b
 5. For each domain section (1-10):
    - Create the markdown table header: `| MCSB Control | Responsibility | Implementation Type | Configuration | Baseline Guidance Summary | Source |`
    - Write explicit rows first (no marker)

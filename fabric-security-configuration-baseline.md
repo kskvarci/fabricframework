@@ -8,11 +8,10 @@
 - [Purpose](#purpose)
 - [Sources](#sources)
 - [Legend](#legend)
-- [Regulatory Framework Mappings](#regulatory-framework-mappings)
-- [How to Use](#how-to-use)
-- [Implementation Types](#implementation-types)
+- [How to Read This Document](#how-to-read-this-document)
 - [Where This Fits: SaaS Service Enablement for Regulated Industries](#where-this-fits-saas-service-enablement-for-regulated-industries)
 - [How This Relates to Compliance Frameworks, the MCSB, and Internal Policies](#how-this-relates-to-compliance-frameworks-the-mcsb-and-internal-policies)
+  - [Regulatory Framework Mappings](#regulatory-framework-mappings)
 - **Security Domains**
   - [1. Network Security (NS)](#1-network-security-ns)
   - [2. Identity Management (IM)](#2-identity-management-im)
@@ -42,93 +41,20 @@ This artifact provides a complete mapping of every control in the MCSB Fabric Se
 - Rows **without** a marker = the setting/configuration is explicitly named or linked in the MCSB Fabric Security Baseline document
 - Rows marked with **†** (dagger) = the setting is documented in the Tenant Settings Index but is **not** explicitly referenced in the baseline; it has been mapped to this control by inference based on the control's stated purpose
 
-### Regulatory Framework Mappings
+### How to Read This Document
 
-Each MCSB control maps to NIST SP 800-53 r4, CIS Controls v8, and PCI-DSS v3.2.1. These mappings are published by Microsoft at the MCSB control domain level.
+**Column definitions:**
 
-| MCSB Control | CIS Controls v8 | NIST SP 800-53 r4 | PCI-DSS v3.2.1 | Source |
-|---|---|---|---|---|
-| **NS-1** | 3.12, 13.4, 4.4 | AC-4, SC-2, SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-1-establish-network-segmentation-boundaries) |
-| **NS-2** | 3.12, 4.4 | AC-4, SC-2, SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-2-secure-cloud-native-services-with-network-controls) |
-| **NS-3** | 4.4, 4.8, 13.10 | AC-4, SC-7, CM-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-3-deploy-firewall-at-the-edge-of-enterprise-network) |
-| **NS-4** | 13.2, 13.3, 13.7, 13.8 | SC-7, SI-4 | 11.4 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-4-deploy-intrusion-detectionintrusion-prevention-systems-idsips) |
-| **NS-5** | 13.10 | SC-5 | 6.6 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-5-deploy-ddos-protection) |
-| **NS-6** | 13.10 | SC-7 | 6.6 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-6-deploy-web-application-firewall) |
-| **NS-7** | 4.4, 4.8 | SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-7-simplify-network-security-configuration) |
-| **NS-8** | 4.4, 4.8 | CM-7 | 2.2.2 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-8-detect-and-disable-insecure-services-and-protocols) |
-| **NS-9** | 12.7 | CA-3, AC-17, AC-4 | N/A | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-9-connect-on-premises-or-cloud-network-privately) |
-| **NS-10** | 4.9 | SC-20, SC-21 | N/A | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-10-ensure-domain-name-system-dns-security) |
-| **IM-1** | 6.7, 12.5 | AC-2, AC-3, IA-2, IA-8 | 7.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-1-use-centralized-identity-and-authentication-system) |
-| **IM-2** | 5.4, 6.5 | AC-2, AC-3, IA-2, IA-8, SI-4 | 8.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-2-protect-identity-and-authentication-systems) |
-| **IM-3** | N/A | AC-2, AC-3, IA-4, IA-5, IA-9 | N/A | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-3-manage-application-identities-securely-and-automatically) |
-| **IM-4** | N/A | SC-8 | 4.1 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-4-authenticate-server-and-services) |
-| **IM-5** | N/A | IA-4, IA-2, IA-8 | 7.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-5-use-single-sign-on-sso-for-application-access) |
-| **IM-6** | 6.3, 6.4 | AC-2, AC-3, IA-2, IA-5, IA-8 | 7.2, 8.2, 8.3, 8.4 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-6-use-strong-authentication-controls) |
-| **IM-7** | 3.3, 6.4, 13.5 | AC-2, AC-3, AC-6 | 7.2 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-7-restrict-resource-access-based-on-conditions) |
-| **IM-8** | N/A | IA-5 | 3.5, 3.6, 8.2, 8.5 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-8-restrict-the-exposure-of-credentials-and-secrets) |
-| **IM-9** | N/A | AC-2, AC-3, IA-4 | N/A | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-9-secure-user-access-to-existing-applications) |
-| **PA-1** | 5.4, 6.8 | AC-2, AC-6 | 7.1, 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-1-separate-and-limit-highly-privilegedadministrative-users) |
-| **PA-2** | N/A | AC-2 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-2-avoid-standing-access-for-user-accounts-and-permissions) |
-| **PA-3** | N/A | AC-2, AC-5, AC-6 | 7.1, 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-3-manage-lifecycle-of-identities-and-entitlements) |
-| **PA-4** | N/A | AC-2, AC-6 | 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-4-review-and-reconcile-user-access-regularly) |
-| **PA-5** | N/A | AC-2 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-5-set-up-emergency-access) |
-| **PA-6** | 12.8, 13.5 | AC-2, SC-2, SC-7 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-6-use-privileged-access-workstations) |
-| **PA-7** | 3.3, 6.8 | AC-2, AC-3, AC-6 | 7.1, 7.2 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-7-follow-just-enough-administration-least-privilege-principle) |
-| **PA-8** | N/A | AC-2, AC-3, AC-6 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-8-determine-access-process-for-cloud-provider-support) |
-| **DP-1** | 3.2, 3.7, 3.13 | RA-2, SC-28 | A3.2 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-1-discover-classify-and-label-sensitive-data) |
-| **DP-2** | 3.13 | AC-4, SI-4 | A3.2 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-2-monitor-anomalies-and-threats-targeting-sensitive-data) |
-| **DP-3** | 3.10 | SC-8 | 3.5, 3.6, 4.1 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-3-encrypt-sensitive-data-in-transit) |
-| **DP-4** | 3.11 | SC-28 | 3.4, 3.5 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-4-enable-data-at-rest-encryption-by-default) |
-| **DP-5** | 3.11 | SC-12, SC-28 | 3.4, 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-5-use-customer-managed-key-option-in-data-at-rest-encryption-when-required) |
-| **DP-6** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-6-use-a-secure-key-management-process) |
-| **DP-7** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-7-use-a-secure-certificate-management-process) |
-| **DP-8** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-8-ensure-security-of-key-and-certificate-repository) |
-| **AM-1** | 1.1, 1.5, 2.1, 2.4 | CM-8, PM-5 | 2.4 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-1-track-asset-inventory-and-their-risks) |
-| **AM-2** | 2.5, 2.6, 2.7, 4.8 | CM-8, PM-5 | 6.3 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-2-use-only-approved-services) |
-| **AM-3** | 1.1, 2.1 | CM-8, CM-7 | 2.4 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-3-ensure-security-of-asset-lifecycle-management) |
-| **AM-4** | N/A | AC-2, AC-6 | N/A | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-4-limit-access-to-asset-management) |
-| **AM-5** | 2.5, 2.6, 2.7 | CM-8, CM-7 | 6.3 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-5-use-only-approved-applications-in-virtual-machine) |
-| **LT-1** | 8.11 | AU-3, AU-6, AU-12, SI-4 | 10.6, 10.8, A3.5 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-1-enable-threat-detection-capabilities) |
-| **LT-2** | 8.11 | AU-3, AU-6, AU-12, SI-4 | 10.6, 10.8, A3.5 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-2-enable-threat-detection-for-identity-and-access-management) |
-| **LT-3** | 8.2, 8.5, 8.12 | AU-3, AU-6, AU-12, SI-4 | 10.1, 10.2, 10.3 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-3-enable-logging-for-security-investigation) |
-| **LT-4** | 8.2, 8.5, 8.6, 8.7, 13.6 | AU-3, AU-6, AU-12, SI-4 | 10.8 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-4-enable-network-logging-for-security-investigation) |
-| **LT-5** | 8.9, 8.11, 13.1 | AU-3, AU-6, AU-12, SI-4 | N/A | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-5-centralize-security-log-management-and-analysis) |
-| **LT-6** | 8.10 | AU-11 | 10.7 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-6-configure-log-storage-retention) |
-| **LT-7** | 8.4 | AU-8 | 10.4 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-7-use-approved-time-synchronization-sources) |
-| **IR-1** | 17.4, 17.7 | IR-4, IR-8 | 10.8 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-1-preparation---update-incident-response-plan-and-handling-process) |
-| **IR-2** | 17.1, 17.3, 17.6 | IR-4, IR-8, IR-5, IR-6 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-2-preparation---setup-incident-notification) |
-| **IR-3** | 17.9 | IR-4, IR-5, IR-7 | 10.8 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-3-detection-and-analysis---create-incidents-based-on-high-quality-alerts) |
-| **IR-4** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-4-detection-and-analysis---investigate-an-incident) |
-| **IR-5** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-5-detection-and-analysis---prioritize-incidents) |
-| **IR-6** | N/A | IR-4, IR-5, IR-6 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-6-containment-eradication-and-recovery---automate-the-incident-handling) |
-| **IR-7** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-7-post-incident-activity---conduct-lessons-learned-and-retain-evidence) |
-| **PV-1** | 4.1, 4.2 | CM-2, CM-6 | 1.1 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-1-define-and-establish-secure-configurations) |
-| **PV-2** | 4.1, 4.2 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-2-audit-and-enforce-secure-configurations) |
-| **PV-3** | 4.1 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-3-define-and-establish-secure-configurations-for-compute-resources) |
-| **PV-4** | 4.1 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-4-audit-and-enforce-secure-configurations-for-compute-resources) |
-| **PV-5** | 5.5, 7.1, 7.5, 7.6 | RA-3, RA-5 | 6.1, 6.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-5-perform-vulnerability-assessments) |
-| **PV-6** | 7.2, 7.3, 7.4, 7.7 | RA-3, RA-5 | 6.1, 6.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-6-rapidly-and-automatically-remediate-vulnerabilities) |
-| **PV-7** | 18.1, 18.2, 18.3 | CA-8, RA-5 | 11.3 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-7-conduct-regular-red-team-operations) |
-| **BR-1** | 11.2 | CP-2, CP-4, CP-9 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-1-ensure-regular-automated-backups) |
-| **BR-2** | 11.3 | CP-6, CP-9 | 3.4 | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-2-protect-backup-and-recovery-data) |
-| **BR-3** | 11.5 | CP-9 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-3-validate-all-backups-including-customer-managed-keys) |
-| **BR-4** | 11.5 | CP-4 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-4-mitigate-risk-of-lost-keys) |
-
-*Source: [MCSB Control Domains](https://learn.microsoft.com/en-us/security/benchmark/azure/overview)*
-
-### How to Use
 - **MCSB Control** = control ID and name from the Fabric Security Baseline
 - **Responsibility** = as stated in the baseline (Customer, Microsoft, Shared)
-- **Implementation Type** = Tenant Setting | Platform Config | Process Control | Microsoft Managed
+- **Implementation Type** = how the control is realized:
+  - **Tenant Setting** — Configurable in Fabric Admin Portal
+  - **Platform Config** — Configured in Entra ID, Azure, Purview, or Defender
+  - **Process Control** — Requires organizational procedure
+  - **Microsoft Managed** — Handled by Microsoft; no customer configuration required
 - **Configuration** = the specific setting or action referenced
 - **Baseline Guidance Summary** = summarized from the baseline document
 - **Source** = URL to the relevant documentation
-
-### Implementation Types
-- **Tenant Setting** — Configurable in Fabric Admin Portal
-- **Platform Config** — Configured in Entra ID, Azure, Purview, or Defender
-- **Process Control** — Requires organizational procedure
-- **Microsoft Managed** — Handled by Microsoft; no customer configuration required
 
 ### Where This Fits: SaaS Service Enablement for Regulated Industries
 
@@ -327,6 +253,80 @@ Fabric Tenant Setting (e.g., "Block Public Internet Access = Enabled")
 3. **"We need a list of all security settings"** — They want Layer 4 without the control mapping context. This document provides both: the inventory AND the traceability upward.
 
 4. **"How do we prove compliance to our auditors?"** — Auditors want the full chain: Policy requirement → MCSB control → specific setting → evidence of configuration. This document provides the middle links.
+
+### Regulatory Framework Mappings
+
+Each MCSB control maps to NIST SP 800-53 r4, CIS Controls v8, and PCI-DSS v3.2.1. These mappings are published by Microsoft at the MCSB control domain level.
+
+| MCSB Control | CIS Controls v8 | NIST SP 800-53 r4 | PCI-DSS v3.2.1 | Source |
+|---|---|---|---|---|
+| **NS-1** | 3.12, 13.4, 4.4 | AC-4, SC-2, SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-1-establish-network-segmentation-boundaries) |
+| **NS-2** | 3.12, 4.4 | AC-4, SC-2, SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-2-secure-cloud-native-services-with-network-controls) |
+| **NS-3** | 4.4, 4.8, 13.10 | AC-4, SC-7, CM-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-3-deploy-firewall-at-the-edge-of-enterprise-network) |
+| **NS-4** | 13.2, 13.3, 13.7, 13.8 | SC-7, SI-4 | 11.4 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-4-deploy-intrusion-detectionintrusion-prevention-systems-idsips) |
+| **NS-5** | 13.10 | SC-5 | 6.6 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-5-deploy-ddos-protection) |
+| **NS-6** | 13.10 | SC-7 | 6.6 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-6-deploy-web-application-firewall) |
+| **NS-7** | 4.4, 4.8 | SC-7 | 1.1, 1.2, 1.3 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-7-simplify-network-security-configuration) |
+| **NS-8** | 4.4, 4.8 | CM-7 | 2.2.2 | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-8-detect-and-disable-insecure-services-and-protocols) |
+| **NS-9** | 12.7 | CA-3, AC-17, AC-4 | N/A | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-9-connect-on-premises-or-cloud-network-privately) |
+| **NS-10** | 4.9 | SC-20, SC-21 | N/A | [MCSB Network Security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-network-security#ns-10-ensure-domain-name-system-dns-security) |
+| **IM-1** | 6.7, 12.5 | AC-2, AC-3, IA-2, IA-8 | 7.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-1-use-centralized-identity-and-authentication-system) |
+| **IM-2** | 5.4, 6.5 | AC-2, AC-3, IA-2, IA-8, SI-4 | 8.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-2-protect-identity-and-authentication-systems) |
+| **IM-3** | N/A | AC-2, AC-3, IA-4, IA-5, IA-9 | N/A | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-3-manage-application-identities-securely-and-automatically) |
+| **IM-4** | N/A | SC-8 | 4.1 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-4-authenticate-server-and-services) |
+| **IM-5** | N/A | IA-4, IA-2, IA-8 | 7.2, 8.3 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-5-use-single-sign-on-sso-for-application-access) |
+| **IM-6** | 6.3, 6.4 | AC-2, AC-3, IA-2, IA-5, IA-8 | 7.2, 8.2, 8.3, 8.4 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-6-use-strong-authentication-controls) |
+| **IM-7** | 3.3, 6.4, 13.5 | AC-2, AC-3, AC-6 | 7.2 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-7-restrict-resource-access-based-on-conditions) |
+| **IM-8** | N/A | IA-5 | 3.5, 3.6, 8.2, 8.5 | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-8-restrict-the-exposure-of-credentials-and-secrets) |
+| **IM-9** | N/A | AC-2, AC-3, IA-4 | N/A | [MCSB Identity Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-identity-management#im-9-secure-user-access-to-existing-applications) |
+| **PA-1** | 5.4, 6.8 | AC-2, AC-6 | 7.1, 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-1-separate-and-limit-highly-privilegedadministrative-users) |
+| **PA-2** | N/A | AC-2 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-2-avoid-standing-access-for-user-accounts-and-permissions) |
+| **PA-3** | N/A | AC-2, AC-5, AC-6 | 7.1, 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-3-manage-lifecycle-of-identities-and-entitlements) |
+| **PA-4** | N/A | AC-2, AC-6 | 7.2, 8.1 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-4-review-and-reconcile-user-access-regularly) |
+| **PA-5** | N/A | AC-2 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-5-set-up-emergency-access) |
+| **PA-6** | 12.8, 13.5 | AC-2, SC-2, SC-7 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-6-use-privileged-access-workstations) |
+| **PA-7** | 3.3, 6.8 | AC-2, AC-3, AC-6 | 7.1, 7.2 | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-7-follow-just-enough-administration-least-privilege-principle) |
+| **PA-8** | N/A | AC-2, AC-3, AC-6 | N/A | [MCSB Privileged Access](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-privileged-access#pa-8-determine-access-process-for-cloud-provider-support) |
+| **DP-1** | 3.2, 3.7, 3.13 | RA-2, SC-28 | A3.2 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-1-discover-classify-and-label-sensitive-data) |
+| **DP-2** | 3.13 | AC-4, SI-4 | A3.2 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-2-monitor-anomalies-and-threats-targeting-sensitive-data) |
+| **DP-3** | 3.10 | SC-8 | 3.5, 3.6, 4.1 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-3-encrypt-sensitive-data-in-transit) |
+| **DP-4** | 3.11 | SC-28 | 3.4, 3.5 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-4-enable-data-at-rest-encryption-by-default) |
+| **DP-5** | 3.11 | SC-12, SC-28 | 3.4, 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-5-use-customer-managed-key-option-in-data-at-rest-encryption-when-required) |
+| **DP-6** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-6-use-a-secure-key-management-process) |
+| **DP-7** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-7-use-a-secure-certificate-management-process) |
+| **DP-8** | N/A | SC-12, SC-28 | 3.5, 3.6 | [MCSB Data Protection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-data-protection#dp-8-ensure-security-of-key-and-certificate-repository) |
+| **AM-1** | 1.1, 1.5, 2.1, 2.4 | CM-8, PM-5 | 2.4 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-1-track-asset-inventory-and-their-risks) |
+| **AM-2** | 2.5, 2.6, 2.7, 4.8 | CM-8, PM-5 | 6.3 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-2-use-only-approved-services) |
+| **AM-3** | 1.1, 2.1 | CM-8, CM-7 | 2.4 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-3-ensure-security-of-asset-lifecycle-management) |
+| **AM-4** | N/A | AC-2, AC-6 | N/A | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-4-limit-access-to-asset-management) |
+| **AM-5** | 2.5, 2.6, 2.7 | CM-8, CM-7 | 6.3 | [MCSB Asset Management](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-asset-management#am-5-use-only-approved-applications-in-virtual-machine) |
+| **LT-1** | 8.11 | AU-3, AU-6, AU-12, SI-4 | 10.6, 10.8, A3.5 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-1-enable-threat-detection-capabilities) |
+| **LT-2** | 8.11 | AU-3, AU-6, AU-12, SI-4 | 10.6, 10.8, A3.5 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-2-enable-threat-detection-for-identity-and-access-management) |
+| **LT-3** | 8.2, 8.5, 8.12 | AU-3, AU-6, AU-12, SI-4 | 10.1, 10.2, 10.3 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-3-enable-logging-for-security-investigation) |
+| **LT-4** | 8.2, 8.5, 8.6, 8.7, 13.6 | AU-3, AU-6, AU-12, SI-4 | 10.8 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-4-enable-network-logging-for-security-investigation) |
+| **LT-5** | 8.9, 8.11, 13.1 | AU-3, AU-6, AU-12, SI-4 | N/A | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-5-centralize-security-log-management-and-analysis) |
+| **LT-6** | 8.10 | AU-11 | 10.7 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-6-configure-log-storage-retention) |
+| **LT-7** | 8.4 | AU-8 | 10.4 | [MCSB Logging and Threat Detection](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-logging-threat-detection#lt-7-use-approved-time-synchronization-sources) |
+| **IR-1** | 17.4, 17.7 | IR-4, IR-8 | 10.8 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-1-preparation---update-incident-response-plan-and-handling-process) |
+| **IR-2** | 17.1, 17.3, 17.6 | IR-4, IR-8, IR-5, IR-6 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-2-preparation---setup-incident-notification) |
+| **IR-3** | 17.9 | IR-4, IR-5, IR-7 | 10.8 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-3-detection-and-analysis---create-incidents-based-on-high-quality-alerts) |
+| **IR-4** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-4-detection-and-analysis---investigate-an-incident) |
+| **IR-5** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-5-detection-and-analysis---prioritize-incidents) |
+| **IR-6** | N/A | IR-4, IR-5, IR-6 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-6-containment-eradication-and-recovery---automate-the-incident-handling) |
+| **IR-7** | N/A | IR-4 | 12.10 | [MCSB Incident Response](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-incident-response#ir-7-post-incident-activity---conduct-lessons-learned-and-retain-evidence) |
+| **PV-1** | 4.1, 4.2 | CM-2, CM-6 | 1.1 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-1-define-and-establish-secure-configurations) |
+| **PV-2** | 4.1, 4.2 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-2-audit-and-enforce-secure-configurations) |
+| **PV-3** | 4.1 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-3-define-and-establish-secure-configurations-for-compute-resources) |
+| **PV-4** | 4.1 | CM-2, CM-6 | 2.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-4-audit-and-enforce-secure-configurations-for-compute-resources) |
+| **PV-5** | 5.5, 7.1, 7.5, 7.6 | RA-3, RA-5 | 6.1, 6.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-5-perform-vulnerability-assessments) |
+| **PV-6** | 7.2, 7.3, 7.4, 7.7 | RA-3, RA-5 | 6.1, 6.2 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-6-rapidly-and-automatically-remediate-vulnerabilities) |
+| **PV-7** | 18.1, 18.2, 18.3 | CA-8, RA-5 | 11.3 | [MCSB Posture and Vulnerability Mgmt](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-posture-vulnerability-management#pv-7-conduct-regular-red-team-operations) |
+| **BR-1** | 11.2 | CP-2, CP-4, CP-9 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-1-ensure-regular-automated-backups) |
+| **BR-2** | 11.3 | CP-6, CP-9 | 3.4 | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-2-protect-backup-and-recovery-data) |
+| **BR-3** | 11.5 | CP-9 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-3-validate-all-backups-including-customer-managed-keys) |
+| **BR-4** | 11.5 | CP-4 | N/A | [MCSB Backup and Recovery](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-backup-recovery#br-4-mitigate-risk-of-lost-keys) |
+
+*Source: [MCSB Control Domains](https://learn.microsoft.com/en-us/security/benchmark/azure/overview)*
 
 ---
 
