@@ -1,6 +1,33 @@
 # Microsoft Fabric Security Configuration Baseline
 ## For Regulated Enterprise Adoption
 
+---
+
+## Table of Contents
+
+- [Purpose](#purpose)
+- [Sources](#sources)
+- [Legend](#legend)
+- [Regulatory Framework Mappings](#regulatory-framework-mappings)
+- [How to Use](#how-to-use)
+- [Implementation Types](#implementation-types)
+- [Where This Fits: SaaS Service Enablement for Regulated Industries](#where-this-fits-saas-service-enablement-for-regulated-industries)
+- [How This Relates to Compliance Frameworks, the MCSB, and Internal Policies](#how-this-relates-to-compliance-frameworks-the-mcsb-and-internal-policies)
+- [1. Network Security (NS)](#1-network-security-ns)
+- [2. Identity Management (IM)](#2-identity-management-im)
+- [3. Privileged Access (PA)](#3-privileged-access-pa)
+- [4. Data Protection (DP)](#4-data-protection-dp)
+- [5. Asset Management (AM)](#5-asset-management-am)
+- [6. Logging and Threat Detection (LT)](#6-logging-and-threat-detection-lt)
+- [7. Incident Response (IR)](#7-incident-response-ir)
+- [8. Posture and Vulnerability Management (PV)](#8-posture-and-vulnerability-management-pv)
+- [9. Endpoint Security (ES)](#9-endpoint-security-es)
+- [10. Backup and Recovery (BR)](#10-backup-and-recovery-br)
+- [Evidence Collection](#evidence-collection)
+- [Notes](#notes)
+
+---
+
 ### Purpose
 This artifact provides a complete mapping of every control in the MCSB Fabric Security Baseline to implementation guidance. Each row is sourced directly from Microsoft's publicly documented MCSB Fabric Security Baseline and/or the Fabric Tenant Settings Index. Every entry includes a link to its source documentation.
 
