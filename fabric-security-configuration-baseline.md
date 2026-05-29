@@ -58,201 +58,86 @@ This artifact provides a complete mapping of every control in the MCSB Fabric Se
 
 ### Where This Fits: SaaS Service Enablement for Regulated Industries
 
-Regulated enterprises (financial services, healthcare, government, etc.) typically follow a structured process before enabling a new SaaS service in production. This document serves a specific role in that lifecycle:
+Regulated enterprises follow a structured lifecycle before enabling a new SaaS service. This document is **Step 5** — it inventories the security levers but does **not** prescribe which way to set them (that's Step 6).
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  PHASE 1: DEMAND & ASSESSMENT                                               │
-│                                                                             │
-│  1. Business Use Case Identification                                        │
-│     └─ Stakeholder identifies need for analytics/data platform capability   │
-│                                                                             │
-│  2. Third-Party Risk Management (TPRM) / Vendor Assessment                  │
-│     └─ Procurement & Risk team evaluate Microsoft as vendor                 │
-│     └─ Review SOC 2, ISO 27001, FedRAMP (if applicable), DPA, SLAs         │
-│                                                                             │
-│  3. Service-Level Security Assessment                                       │
-│     └─ Map service capabilities to internal control framework               │
-│     └─ Identify shared responsibility boundaries                            │
-│     └─ Input: MCSB Fabric Security Baseline, Microsoft trust documents      │
-│                                                                             │
-│  4. Gap Analysis & Risk Acceptance                                          │
-│     └─ Identify controls that cannot be satisfied by the platform           │
-│     └─ Document compensating controls or accept residual risk               │
-│     └─ Obtain CISO / Risk Committee sign-off                                │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  PHASE 2: CONFIGURATION & HARDENING                                         │
-│                                                                             │
-│  5. Security Configuration Baseline   ◄── THIS DOCUMENT                    │
-│     └─ Defines the complete inventory of security-relevant controls         │
-│     └─ Maps each control to a specific setting, platform config, or process │
-│     └─ Does NOT prescribe posture (enable/disable) — that is Step 6        │
-│                                                                             │
-│  6. Posture Decision & Policy Authoring                                     │
-│     └─ Security team decides target state for each setting                  │
-│     └─ Documents justification (e.g., "Disabled — data sovereignty req")    │
-│     └─ Produces: Tenant Configuration Policy / SOPsecurity standards        │
-│                                                                             │
-│  7. Tenant Provisioning & Baseline Deployment                               │
-│     └─ Admin applies configuration per the posture decisions                │
-│     └─ Automate via Fabric REST APIs / Tenant Settings API where possible   │
-│     └─ API: https://learn.microsoft.com/en-us/rest/api/fabric/admin/tenants │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  PHASE 3: OPERATE & GOVERN                                                  │
-│                                                                             │
-│  8. Validation & Compliance Evidence                                        │
-│     └─ Capture current tenant state via API                                 │
-│     └─ Compare against posture decisions (drift detection)                  │
-│     └─ Produce compliance artifacts for auditors                            │
-│                                                                             │
-│  9. Ongoing Monitoring & Alerting                                           │
-│     └─ Microsoft Defender for Cloud Apps / Unified Audit Log                │
-│     └─ Alert on setting changes, anomalous access, data exfiltration        │
-│                                                                             │
-│  10. Periodic Reassessment                                                  │
-│      └─ Re-evaluate when Microsoft adds new settings or features            │
-│      └─ Re-evaluate when internal framework changes                         │
-│      └─ Refresh this baseline document (see AGENT_SKILL.md for process)     │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+#### Enablement Lifecycle
 
-**Key distinction**: This document (Step 5) tells you *what levers exist*. It does not tell you *which way to set them*. The posture decisions (Step 6) are organization-specific and depend on risk appetite, regulatory requirements, and business needs. Separating these concerns allows the baseline to remain factual and reusable across engagements while posture decisions are tailored per customer.
+**Phase 1 — Demand & Assessment**
 
-**Typical roles involved at each phase:**
+1. **Business Use Case Identification** — stakeholder identifies need for the platform capability
+2. **Third-Party Risk Management (TPRM)** — evaluate Microsoft as vendor (SOC 2, ISO 27001, FedRAMP, DPA, SLAs)
+3. **Service-Level Security Assessment** — map capabilities to internal control framework; identify shared-responsibility boundaries
+4. **Gap Analysis & Risk Acceptance** — document compensating controls or accept residual risk; obtain CISO/Risk Committee sign-off
 
-| Phase | Primary Owner | Supporting Roles |
-|-------|--------------|-----------------|
-| 1. Use Case | Business Unit / Data Team | Enterprise Architecture |
-| 2. TPRM | Procurement / Third-Party Risk | Legal, InfoSec |
-| 3. Security Assessment | Information Security | Cloud Architecture, Compliance |
-| 4. Gap Analysis | CISO Office / Risk | InfoSec, Compliance |
-| 5. Configuration Baseline | Cloud Security Architecture | Platform Engineering |
-| 6. Posture Decisions | CISO / Security Governance | Compliance, Legal, Business |
-| 7. Deployment | Platform / Fabric Admin | Cloud Security, DevOps |
-| 8. Validation | Compliance / Audit | Platform Engineering |
-| 9. Monitoring | Security Operations (SOC) | Platform Engineering |
-| 10. Reassessment | Cloud Security Architecture | All of the above |
+**Phase 2 — Configuration & Hardening**
+
+5. **Security Configuration Baseline ← THIS DOCUMENT** — complete inventory of security-relevant controls mapped to settings, platform configs, and processes
+6. **Posture Decision & Policy Authoring** — security team decides target state per setting; documents justification
+7. **Tenant Provisioning & Baseline Deployment** — apply configuration; automate via [Fabric Tenant Settings API](https://learn.microsoft.com/en-us/rest/api/fabric/admin/tenants)
+
+**Phase 3 — Operate & Govern**
+
+8. **Validation & Compliance Evidence** — capture tenant state via API; drift detection; produce audit artifacts
+9. **Ongoing Monitoring & Alerting** — Defender for Cloud Apps / Unified Audit Log; alert on changes and anomalies
+10. **Periodic Reassessment** — re-evaluate when Microsoft adds settings or internal framework changes
+
+#### Roles
+
+| Phase | Primary Owner | Supporting |
+|-------|--------------|------------|
+| 1 | Business Unit / Data Team | Enterprise Architecture |
+| 2 | Procurement / Third-Party Risk | Legal, InfoSec |
+| 3 | Information Security | Cloud Architecture, Compliance |
+| 4 | CISO Office / Risk | InfoSec, Compliance |
+| 5 | Cloud Security Architecture | Platform Engineering |
+| 6 | CISO / Security Governance | Compliance, Legal, Business |
+| 7 | Platform / Fabric Admin | Cloud Security, DevOps |
+| 8 | Compliance / Audit | Platform Engineering |
+| 9 | Security Operations (SOC) | Platform Engineering |
+| 10 | Cloud Security Architecture | All of the above |
 
 ### How This Relates to Compliance Frameworks, the MCSB, and Internal Policies
 
-Regulated organizations operate within a layered hierarchy of controls. This document sits at a specific layer in that stack. Understanding the relationships prevents confusion about what this artifact does and does not replace.
+This document sits at a specific layer in the control hierarchy that regulated organizations operate within:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  LAYER 1: EXTERNAL REGULATIONS & INDUSTRY STANDARDS                         │
-│                                                                             │
-│  Examples: NIST SP 800-53, PCI-DSS, SOX/FFIEC, HIPAA, DORA, NIS2,         │
-│            CIS Controls, ISO 27001/27002, FedRAMP                           │
-│                                                                             │
-│  What they are: Mandatory or adopted-by-policy control requirements         │
-│  Who owns them: Regulators, standards bodies, industry consortia            │
-│  Fabric-specific? No — they are technology-agnostic                         │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                              ▼ mapped into ▼                                │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  LAYER 2: CUSTOMER'S INTERNAL SECURITY FRAMEWORK / POLICY                   │
-│                                                                             │
-│  Examples: "Enterprise Information Security Policy v4.2",                   │
-│            "Cloud Security Standard", "Data Classification Policy"          │
-│                                                                             │
-│  What they are: Organization-specific interpretation of Layer 1             │
-│  Who owns them: CISO office, Risk & Compliance, Security Governance         │
-│  Fabric-specific? No — they apply to all technologies/services              │
-│                                                                             │
-│  Typical structure:                                                         │
-│  • Control domains (Access Control, Data Protection, Logging, etc.)         │
-│  • Requirements per domain (e.g., "All data at rest must be encrypted       │
-│    with keys managed per the Key Management Standard")                      │
-│  • Risk ratings and exceptions process                                      │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                              ▼ satisfied by ▼                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  LAYER 3: MICROSOFT CLOUD SECURITY BENCHMARK (MCSB)                         │
-│                                                                             │
-│  What it is: Microsoft's control framework that maps Azure/M365/Fabric      │
-│              capabilities back to industry standards (NIST, CIS, PCI-DSS)   │
-│  Who owns it: Microsoft Product Security                                    │
-│  Fabric-specific? Partially — the MCSB Fabric Security Baseline is the     │
-│                   service-specific view of the MCSB for Fabric              │
-│                                                                             │
-│  Role in the hierarchy:                                                     │
-│  • Provides a BRIDGE between customer's internal framework (Layer 2) and    │
-│    the actual platform capabilities (Layer 4)                               │
-│  • Pre-maps to NIST, CIS, PCI-DSS so customers don't start from scratch    │
-│  • Tells you WHAT controls exist and WHO is responsible (Customer vs MSFT)  │
-│  • Does NOT tell you how to configure specific settings                     │
-│                                                                             │
-│  Published mappings (included in this document):                             │
-│  • MCSB → NIST SP 800-53 r4                                                │
-│  • MCSB → CIS Controls v8                                                  │
-│  • MCSB → PCI-DSS v3.2.1                                                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                              ▼ implemented by ▼                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  LAYER 4: THIS DOCUMENT — FABRIC SECURITY CONFIGURATION BASELINE            │
-│                                                                             │
-│  What it is: Complete inventory of every security-relevant setting and      │
-│              configuration available in Microsoft Fabric, mapped to the     │
-│              MCSB controls they satisfy                                     │
-│  Who owns it: Cloud Security Architecture / Consulting                      │
-│  Fabric-specific? YES — this is entirely Fabric-specific                    │
-│                                                                             │
-│  Role in the hierarchy:                                                     │
-│  • Translates MCSB controls into ACTIONABLE Fabric configurations           │
-│  • Provides the "knobs and levers" inventory for each control domain        │
-│  • Includes settings explicitly referenced in the baseline AND              │
-│    additional settings mapped by inference (marked with †)                  │
-│  • Enables traceability: Setting → MCSB Control → NIST/CIS/PCI-DSS →      │
-│    Customer's internal policy requirement                                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                              ▼ drives ▼                                     │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  LAYER 5: CUSTOMER'S POSTURE DECISIONS (NOT IN THIS DOCUMENT)               │
-│                                                                             │
-│  What it is: The customer's specific enable/disable/restrict decisions      │
-│              for each setting, based on their risk appetite & requirements   │
-│  Who owns it: CISO / Security Governance with business input                │
-│  Fabric-specific? Yes                                                       │
-│                                                                             │
-│  Example decisions:                                                         │
-│  • "Disable all external sharing" (satisfies internal DLP-04 requirement)   │
-│  • "Restrict export to PDF only for Confidential-labeled content"           │
-│  • "Enable private links, disable public internet access"                   │
-│  • "Accept risk: allow Azure Maps cross-geo processing (low data sens.)"   │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+#### Control Hierarchy
 
-**The traceability chain** (bottom-up, for audit purposes):
+> **Layer 1: External Regulations** (NIST, PCI-DSS, HIPAA, DORA, CIS, ISO 27001…)
+> → *mapped into* →
+> **Layer 2: Customer's Internal Policy** (org-specific interpretation of Layer 1)
+> → *satisfied by* →
+> **Layer 3: MCSB** (Microsoft's control framework; bridges policy to platform)
+> → *implemented by* →
+> **Layer 4: This Document** (Fabric settings mapped to MCSB controls)
+> → *drives* →
+> **Layer 5: Posture Decisions** (customer's per-setting enable/disable choices)
 
-```
-Fabric Tenant Setting (e.g., "Block Public Internet Access = Enabled")
-  └─► MCSB Control: NS-2 (Secure cloud native services with network controls)
-       └─► NIST SP 800-53: AC-4, SC-2, SC-7
-            └─► Customer Policy: "NET-03: All SaaS services must restrict 
-                 network access to corporate-approved paths"
-                 └─► Regulation: PCI-DSS Req 1.3 (Prohibit direct public 
-                      access between Internet and cardholder data environment)
-```
+#### Traceability Example
 
-**Why this layering matters:**
+| Layer | Example |
+|-------|---------|
+| 5 — Setting | "Block Public Internet Access = Enabled" |
+| 4 — MCSB Control | NS-2: Secure cloud native services with network controls |
+| 3 — NIST SP 800-53 | AC-4, SC-2, SC-7 |
+| 2 — Internal Policy | NET-03: All SaaS services must use corporate-approved network paths |
+| 1 — Regulation | PCI-DSS Req 1.3: Prohibit direct public access to cardholder data |
 
-| Question | Answered By |
-|----------|-------------|
-| "What regulations require us to do this?" | Layer 1 (NIST, PCI-DSS, etc.) |
-| "What does our policy say we must do?" | Layer 2 (Internal framework) |
-| "Does Microsoft's platform address our requirements?" | Layer 3 (MCSB Fabric Baseline) |
-| "What specific settings exist to implement a given control?" | **Layer 4 (This document)** |
-| "What should each setting be set to for our organization?" | Layer 5 (Posture decisions) |
+#### Which Layer Answers Which Question
 
-**Common customer confusion this resolves:**
+| Question | Layer |
+|----------|-------|
+| What regulations require this? | 1 — External regulations |
+| What does our policy mandate? | 2 — Internal framework |
+| Does the platform address our requirements? | 3 — MCSB Fabric Baseline |
+| What specific settings exist for a given control? | **4 — This document** |
+| What should each setting be set to? | 5 — Posture decisions |
 
-1. **"We have the MCSB baseline but don't know what to do"** — They are stuck between Layer 3 and Layer 4. This document bridges that gap.
+#### Common Confusions This Resolves
 
-2. **"We mapped MCSB to our internal framework but still can't configure Fabric"** — They completed the Layer 2↔Layer 3 mapping but lack the Layer 3→Layer 4 translation.
-
-3. **"We need a list of all security settings"** — They want Layer 4 without the control mapping context. This document provides both: the inventory AND the traceability upward.
-
-4. **"How do we prove compliance to our auditors?"** — Auditors want the full chain: Policy requirement → MCSB control → specific setting → evidence of configuration. This document provides the middle links.
+1. **"We have the MCSB but don't know what to do"** — stuck between Layer 3 → 4. This document bridges that gap.
+2. **"We mapped MCSB to our framework but can't configure Fabric"** — missing the Layer 3 → 4 translation.
+3. **"We need a list of all security settings"** — this provides the inventory *and* upward traceability.
+4. **"How do we prove compliance?"** — auditors need the full chain; this document provides the middle links.
 
 ### Regulatory Framework Mappings
 
